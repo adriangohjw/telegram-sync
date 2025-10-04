@@ -1,0 +1,44 @@
+{
+  "name": "telegram-sync",
+  "version": "1.0.0",
+  "description": "Telegram bot that syncs channel media to Cloudflare R2",
+  "main": "src/index.ts",
+  "type": "module",
+  "packageManager": "pnpm@10.16.0",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "start": "wrangler dev",
+    "build": "tsc",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "audit": "with-env pnpm audit",
+    "audit:fix": "with-env pnpm audit --fix",
+    "outdated": "with-env pnpm outdated",
+    "update": "with-env pnpm update",
+    "with-env": "dotenv -e .env --"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.478.0",
+    "@aws-sdk/s3-request-presigner": "^3.478.0",
+    "@t3-oss/env-core": "^0.13.8",
+    "hono": "^3.12.0",
+    "zod": "^4.1.11"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20231218.0",
+    "@types/node": "^20.10.6",
+    "@typescript-eslint/eslint-plugin": "^6.16.0",
+    "@typescript-eslint/parser": "^6.16.0",
+    "dotenv-cli": "^10.0.0",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3",
+    "wrangler": "^3.22.0"
+  },
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=10.16.0"
+  },
+  "author": "adriangohjw"
+}
