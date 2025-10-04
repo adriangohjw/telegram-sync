@@ -13,6 +13,9 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:watch": "vitest --watch",
     "audit": "with-env pnpm audit",
     "audit:fix": "with-env pnpm audit --fix",
     "outdated": "with-env pnpm outdated",
@@ -34,6 +37,7 @@
     "dotenv-cli": "^10.0.0",
     "eslint": "^8.56.0",
     "typescript": "^5.3.3",
+    "vitest": "^3.2.4",
     "wrangler": "^3.22.0"
   },
   "engines": {
