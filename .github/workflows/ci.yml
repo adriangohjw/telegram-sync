@@ -10,7 +10,6 @@ jobs:
   lint:
     name: "🧹 Lint"
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -24,7 +23,6 @@ jobs:
   typecheck:
     name: "🔎 Typecheck"
     runs-on: ubuntu-latest
-    needs: lint
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
