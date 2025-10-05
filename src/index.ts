@@ -1,10 +1,10 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
+import type { Env } from "./env";
+import { TelegramBot, type TelegramUpdate } from "./telegramBot";
 
-type Bindings = {};
-
-const app = new Hono<{ Bindings: Bindings }>();
+const app = new Hono<{ Bindings: Env }>();
 
 // Middleware
 app.use("*", logger());
@@ -32,6 +32,71 @@ app.get("/health", (c) => {
     status: "healthy",
     timestamp: new Date().toISOString(),
   });
+});
+
+app.post("/webhook/telegram", async (c) => {
+  try {
+    const update: TelegramUpdate = await c.req.json();
+
+    const telegramBot = new TelegramBot(c.env);
+    await telegramBot.processUpdate(update);
+
+    return c.json({ ok: true });
+  } catch (error) {
+    console.error("Error processing Telegram webhook:", error);
+    return c.json({ error: "Internal server error" }, 500);
+  }
+});
+
+// Set webhook endpoint
+app.post("/setup/webhook", async (c) => {
+  try {
+    const telegramBot = new TelegramBot(c.env);
+
+    const url = new URL(c.req.url);
+    const webhookUrl = `${url.protocol}//${url.host}/webhook/telegram`;
+
+    const success = await telegramBot.setWebhook(webhookUrl);
+
+    return c.json({
+      success,
+      webhookUrl,
+      message: success ? "Webhook set successfully" : "Failed to set webhook",
+    });
+  } catch (error) {
+    console.error("Error setting webhook:", error);
+    return c.json(
+      {
+        error: "Failed to set webhook",
+        details: error instanceof Error ? error.message : "Unknown error",
+      },
+      500
+    );
+  }
+});
+
+// Delete webhook endpoint
+app.delete("/setup/webhook", async (c) => {
+  try {
+    const telegramBot = new TelegramBot(c.env);
+    const success = await telegramBot.deleteWebhook();
+
+    return c.json({
+      success,
+      message: success
+        ? "Webhook deleted successfully"
+        : "Failed to delete webhook",
+    });
+  } catch (error) {
+    console.error("Error deleting webhook:", error);
+    return c.json(
+      {
+        error: "Failed to delete webhook",
+        details: error instanceof Error ? error.message : "Unknown error",
+      },
+      500
+    );
+  }
 });
 
 // 404 handler
