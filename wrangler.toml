@@ -1,0 +1,16 @@
+name = "telegram-sync"
+main = "src/index.ts"
+
+[build]
+command = "pnpm build"
+
+# R2 bucket binding
+[[r2_buckets]]
+binding = "R2_BUCKET"
+bucket_name = "${R2_BUCKET_NAME}"
+
+# Note: Environment variables are managed via:
+# - wrangler secret put R2_BUCKET_NAME (for production)
+# - .dev.vars file (for local development)
+# - Environment variables in CI/CD
+# Never commit actual secrets or sensitive values to this file!
