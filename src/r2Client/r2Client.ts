@@ -9,11 +9,15 @@ export class R2Client {
     this.bucket = env.R2_BUCKET;
   }
 
-  async uploadFile(
-    key: string,
-    body: ArrayBuffer,
-    contentType: string
-  ): Promise<void> {
+  async uploadFile({
+    key,
+    body,
+    contentType,
+  }: {
+    key: string;
+    body: ArrayBuffer;
+    contentType: string;
+  }): Promise<void> {
     try {
       await this.bucket.put(key, body, {
         httpMetadata: { contentType },
