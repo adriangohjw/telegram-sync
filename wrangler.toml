@@ -1,5 +1,6 @@
 name = "telegram-sync"
 main = "src/index.ts"
+compatibility_date = "2025-10-05"
 
 [build]
 command = "pnpm build"
