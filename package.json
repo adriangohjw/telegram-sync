@@ -7,6 +7,7 @@
   "packageManager": "pnpm@10.16.0",
   "scripts": {
     "dev": "wrangler dev",
+    "dev:poll": "tsx scripts/dev-poll.ts",
     "deploy": "wrangler deploy",
     "start": "wrangler dev",
     "build": "tsc",
