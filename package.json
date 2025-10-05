@@ -16,16 +16,14 @@
     "test": "vitest",
     "test:run": "vitest run",
     "test:watch": "vitest --watch",
-    "audit": "with-env pnpm audit",
-    "audit:fix": "with-env pnpm audit --fix",
-    "outdated": "with-env pnpm outdated",
-    "update": "with-env pnpm update",
-    "with-env": "dotenv -e .env --"
+    "audit": "pnpm audit",
+    "audit:fix": "pnpm audit --fix",
+    "outdated": "pnpm outdated",
+    "update": "pnpm update",
+    "setup:dev": "cp .dev.vars.example .dev.vars",
+    "secrets:list": "wrangler secret list"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.478.0",
-    "@aws-sdk/s3-request-presigner": "^3.478.0",
-    "@t3-oss/env-core": "^0.13.8",
     "hono": "^3.12.0",
     "zod": "^4.1.11"
   },
@@ -34,8 +32,9 @@
     "@types/node": "^20.10.6",
     "@typescript-eslint/eslint-plugin": "^6.16.0",
     "@typescript-eslint/parser": "^6.16.0",
-    "dotenv-cli": "^10.0.0",
+    "dotenv": "^16.6.1",
     "eslint": "^8.56.0",
+    "tsx": "^4.7.0",
     "typescript": "^5.3.3",
     "vitest": "^3.2.4",
     "wrangler": "^3.22.0"

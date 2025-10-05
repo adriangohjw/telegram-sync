@@ -1,17 +1,10 @@
-import { createEnv } from "@t3-oss/env-core";
-import { z } from "zod";
+// Environment types for Cloudflare Workers
+import type { R2Bucket } from "@cloudflare/workers-types";
 
-export const env = createEnv({
-  server: {
-    TELEGRAM_BOT_TOKEN: z.string(),
-    TELEGRAM_CHANNEL_ID: z.string(),
-    R2_ACCOUNT_ID: z.string(),
-    R2_ACCESS_KEY_ID: z.string(),
-    R2_SECRET_ACCESS_KEY: z.string(),
-    R2_BUCKET_NAME: z.string(),
-  },
-  runtimeEnv: process.env,
-  emptyStringAsUndefined: true,
-  skipValidation:
-    !!process.env.CI || process.env.npm_lifecycle_event === "lint",
-});
+export interface Env {
+  TELEGRAM_BOT_TOKEN: string;
+  TELEGRAM_CHANNEL_ID: string;
+  TELEGRAM_MESSAGE_THREAD_ID?: string;
+  R2_BUCKET: R2Bucket;
+  [key: string]: string | R2Bucket;
+}
