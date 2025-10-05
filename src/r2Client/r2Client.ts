@@ -1,36 +1,23 @@
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
-import { env } from "../env";
 import { generateKey, type GenerateKeyParams } from "./generateKey";
+import type { Env } from "../env";
+import type { R2Bucket } from "@cloudflare/workers-types";
 
 export class R2Client {
-  private readonly s3Client: S3Client;
-  private readonly bucketName: string;
+  private readonly bucket: R2Bucket;
 
-  constructor() {
-    this.bucketName = env.R2_BUCKET_NAME;
-    this.s3Client = new S3Client({
-      endpoint: `https://${env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
-      credentials: {
-        accessKeyId: env.R2_ACCESS_KEY_ID,
-        secretAccessKey: env.R2_SECRET_ACCESS_KEY,
-      },
-    });
+  constructor(env: Env) {
+    this.bucket = env.R2_BUCKET;
   }
 
   async uploadFile(
     key: string,
     body: ArrayBuffer,
-    contentType?: string
+    contentType: string
   ): Promise<void> {
-    const command = new PutObjectCommand({
-      Bucket: this.bucketName,
-      Key: key,
-      Body: new Uint8Array(body),
-      ContentType: contentType,
-    });
-
     try {
-      await this.s3Client.send(command);
+      await this.bucket.put(key, body, {
+        httpMetadata: { contentType },
+      });
       console.log(`Successfully uploaded file: ${key}`);
     } catch (error) {
       console.error(`Failed to upload file ${key}:`, error);
