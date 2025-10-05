@@ -16,7 +16,7 @@ describe("generateKey", () => {
     const result = generateKey({ fileName });
 
     // Assert
-    expect(result).toEqual("2024-01-15/test-image_1705314600000.jpg");
+    expect(result).toEqual("2024-01-15/1705314600000_test-image.jpg");
   });
 
   it("should handle files with multiple dots in name", () => {
@@ -27,7 +27,7 @@ describe("generateKey", () => {
     const result = generateKey({ fileName });
 
     // Assert
-    expect(result).toEqual("2024-01-15/my.file.name_1705314600000.png");
+    expect(result).toEqual("2024-01-15/1705314600000_my.file.name.png");
   });
 
   describe("error cases", () => {

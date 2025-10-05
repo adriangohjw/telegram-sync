@@ -24,5 +24,5 @@ export const generateKey = (params: GenerateKeyParams): string => {
   const dateFolder = today.toISOString().split("T")[0]; // YYYY-MM-DD
   const timestamp = Date.now();
 
-  return `${dateFolder}/${baseName}_${timestamp}.${extension}`;
+  return `${dateFolder}/${timestamp}_${baseName}.${extension}`;
 };
