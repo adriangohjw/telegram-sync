@@ -5,6 +5,9 @@ compatibility_date = "2025-10-05"
 [build]
 command = "pnpm build"
 
+[observability.logs]
+enabled = true
+
 # R2 bucket binding
 [[r2_buckets]]
 binding = "R2_BUCKET"
