@@ -34,8 +34,12 @@ app.get("/health", (c) => {
   });
 });
 
-app.post("/webhook/telegram", async (c) => {
+app.post("/webhook/telegram/:secret", async (c) => {
   try {
+    if (c.req.param("secret") !== c.env.TELEGRAM_WEBHOOK_SECRET) {
+      return c.json({ error: "Invalid secret" }, 401);
+    }
+
     const update: TelegramUpdate = await c.req.json();
 
     const telegramBot = new TelegramBot(c.env);
@@ -49,12 +53,18 @@ app.post("/webhook/telegram", async (c) => {
 });
 
 // Set webhook endpoint
-app.post("/setup/webhook", async (c) => {
+app.post("/setup/webhook/:secret", async (c) => {
   try {
+    if (c.req.param("secret") !== c.env.TELEGRAM_WEBHOOK_SECRET) {
+      return c.json({ error: "Invalid secret" }, 401);
+    }
+
     const telegramBot = new TelegramBot(c.env);
 
     const url = new URL(c.req.url);
-    const webhookUrl = `${url.protocol}//${url.host}/webhook/telegram`;
+    const webhookUrl = `${url.protocol}//${
+      url.host
+    }/webhook/telegram/${c.req.param("secret")}`;
 
     const success = await telegramBot.setWebhook(webhookUrl);
 
@@ -76,7 +86,11 @@ app.post("/setup/webhook", async (c) => {
 });
 
 // Delete webhook endpoint
-app.delete("/setup/webhook", async (c) => {
+app.delete("/setup/webhook/:secret", async (c) => {
+  if (c.req.param("secret") !== c.env.TELEGRAM_WEBHOOK_SECRET) {
+    return c.json({ error: "Invalid secret" }, 401);
+  }
+
   try {
     const telegramBot = new TelegramBot(c.env);
     const success = await telegramBot.deleteWebhook();
