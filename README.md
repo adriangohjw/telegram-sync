@@ -4,7 +4,7 @@ A Telegram bot that syncs channel media to Cloudflare R2 storage.
 
 ## Demo
 
-![demo](/demo.mp4)
+![demo](/demo.gif)
 
 ## Setup
 
