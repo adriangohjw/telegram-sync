@@ -17,10 +17,6 @@
     "test": "vitest",
     "test:run": "vitest run",
     "test:watch": "vitest --watch",
-    "audit": "pnpm audit",
-    "audit:fix": "pnpm audit --fix",
-    "outdated": "pnpm outdated",
-    "update": "pnpm update",
     "setup:dev": "cp .dev.vars.example .dev.vars",
     "secrets:list": "wrangler secret list"
   },
