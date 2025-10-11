@@ -1,6 +1,7 @@
 import type { TelegramFile, MediaFile, TelegramUpdate } from "./types";
 import { R2Client } from "../r2Client";
 import { extractMediaFiles } from "./extractMediaFiles";
+import { KVService } from "../kvService";
 import type { Env } from "../env";
 
 export class TelegramBot {
@@ -9,6 +10,7 @@ export class TelegramBot {
   private readonly channelId: string;
   private readonly messageThreadId: string | undefined;
   private readonly r2Client: R2Client;
+  private readonly kvService: KVService;
 
   constructor(env: Env) {
     this.botToken = env.TELEGRAM_BOT_TOKEN;
@@ -17,6 +19,7 @@ export class TelegramBot {
     this.baseUrl = `https://api.telegram.org/bot${this.botToken}`;
 
     this.r2Client = new R2Client(env);
+    this.kvService = new KVService({ namespace: env.KV_STORE });
   }
 
   async setWebhook(webhookUrl: string): Promise<boolean> {
@@ -141,8 +144,12 @@ export class TelegramBot {
       return;
     }
 
-    // Only react with eyes emoji if the message contains media content
-    await this.reactToMessage(message.chat.id, message.message_id, "👀");
+    const kvKey = this.kvService.generateKey({ messageId: message.message_id });
+    const messageProcessed = await this.kvService.get<0 | 1>(kvKey);
+    if (messageProcessed === 0 || messageProcessed === null) {
+      await this.reactToMessage(message.chat.id, message.message_id, "👀");
+      await this.kvService.set<0 | 1>(kvKey, 1);
+    }
 
     // Process each media file
     for (const mediaFile of mediaFiles) {
