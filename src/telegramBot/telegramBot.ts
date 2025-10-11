@@ -151,7 +151,7 @@ export class TelegramBot {
       const messageProcessed = await this.kvService.get<0 | 1>(kvKey);
       if (messageProcessed === 0 || messageProcessed === null) {
         await this.reactToMessage(message.chat.id, message.message_id, "👀");
-        await this.kvService.set<0 | 1>(kvKey, 1);
+        await this.kvService.set<0 | 1>(kvKey, 1, { ttl: 86400 }); // 24 hours TTL
       }
     } else {
       await this.reactToMessage(message.chat.id, message.message_id, "👀");

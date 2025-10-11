@@ -6,6 +6,10 @@ export interface KVServiceOptions {
   namespace: KVNamespace;
 }
 
+export interface KVSetOptions {
+  ttl?: number; // TTL in seconds, defaults to 24 hours (86400 seconds)
+}
+
 export class KVService {
   private namespace: KVNamespace;
 
@@ -32,12 +36,18 @@ export class KVService {
     }
   }
 
-  async set<T = string>(key: string, value: T): Promise<boolean> {
+  async set<T = string>(
+    key: string,
+    value: T,
+    options?: KVSetOptions
+  ): Promise<boolean> {
     try {
       const serializedValue =
         typeof value === "string" ? value : superjson.stringify(value);
 
-      await this.namespace.put(key, serializedValue);
+      const ttl = options?.ttl ?? 86400; // 24 hours if not specified
+
+      await this.namespace.put(key, serializedValue, { expirationTtl: ttl });
       return true;
     } catch (error) {
       console.error(`Error setting key ${key} in KV:`, error);
