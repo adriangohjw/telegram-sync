@@ -40,7 +40,6 @@ A Telegram bot that syncs channel media to Cloudflare R2 storage.
 
    ```
    TELEGRAM_BOT_TOKEN=your_bot_token_here
-   TELEGRAM_BOT_TOKEN=your_bot_token_here
    TELEGRAM_CHANNEL_ID=your_channel_id_here
    MESSAGE_THREAD_ID=opional_your_group_topic_id
    TELEGRAM_WEBHOOK_SECRET=secret-key-to-verify-only-telegram-calling-webhook
