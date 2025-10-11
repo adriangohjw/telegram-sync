@@ -11,10 +11,12 @@ enabled = true
 # R2 bucket binding
 [[r2_buckets]]
 binding = "R2_BUCKET"
+bucket_name = "telegram-sync"
 
 # KV namespace binding
 [[kv_namespaces]]
 binding = "KV_STORE"
+id = "7aaab5fa7cfd4201bc9dff3b2e567815"
 
 [placement]
 mode = "smart"
