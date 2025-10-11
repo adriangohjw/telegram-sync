@@ -134,6 +134,9 @@ export class TelegramBot {
       return;
     }
 
+    // React with 👀 emoji to indicate processing has started
+    await this.reactToMessage(message.chat.id, message.message_id, "👀");
+
     // Process each media file
     for (const mediaFile of extractMediaFiles(message)) {
       try {
@@ -157,6 +160,9 @@ export class TelegramBot {
         console.error(`Failed to process ${mediaFile.fileName}:`, error);
       }
     }
+
+    // Remove 👀 emoji and react with ☁️ emoji to indicate completion
+    await this.reactToMessage(message.chat.id, message.message_id, "☁️");
   }
 
   async downloadMediaFile(mediaFile: MediaFile): Promise<ArrayBuffer> {
@@ -199,5 +205,37 @@ export class TelegramBot {
     }
 
     return response.arrayBuffer();
+  }
+
+  private async reactToMessage(
+    chatId: number,
+    messageId: number,
+    emoji: string
+  ): Promise<void> {
+    const response = await fetch(`${this.baseUrl}/setMessageReaction`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        chat_id: chatId,
+        message_id: messageId,
+        reaction: [{ type: "emoji", emoji: emoji }],
+      }),
+    });
+
+    if (!response.ok) {
+      console.error(`Failed to react to message: ${response.statusText}`);
+      return;
+    }
+
+    const data = (await response.json()) as {
+      ok: boolean;
+      description?: string;
+    };
+
+    if (!data.ok) {
+      console.error(`Telegram API error when reacting: ${data.description}`);
+    }
   }
 }
