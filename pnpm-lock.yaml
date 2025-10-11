@@ -25,8 +25,8 @@ importers:
         specifier: ^20.10.6
         version: 20.19.19
       dotenv:
-        specifier: ^16.6.1
-        version: 16.6.1
+        specifier: ^17.2.3
+        version: 17.2.3
       oxlint:
         specifier: ^1.0.0
         version: 1.19.0
@@ -823,8 +823,8 @@ packages:
     resolution: {integrity: sha512-ecqj/sy1jcK1uWrwpR67UhYrIFQ+5WlGxth34WquCbamhFA6hkkwiu37o6J5xCHdo1oixJRfVRw+ywV+Hq/0Aw==}
     engines: {node: '>=8'}
 
-  dotenv@16.6.1:
-    resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
+  dotenv@17.2.3:
+    resolution: {integrity: sha512-JVUnt+DUIzu87TABbhPmNfVdBDt18BLOWjMUFJMSi/Qqg7NTYtabbvSNJGOJ7afbRuv9D/lngizHtP7QyLQ+9w==}
     engines: {node: '>=12'}
 
   error-stack-parser-es@1.0.5:
@@ -1653,7 +1653,7 @@ snapshots:
 
   detect-libc@2.1.1: {}
 
-  dotenv@16.6.1: {}
+  dotenv@17.2.3: {}
 
   error-stack-parser-es@1.0.5: {}
 
