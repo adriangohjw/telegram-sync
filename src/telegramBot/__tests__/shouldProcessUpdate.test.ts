@@ -11,10 +11,16 @@ describe("TelegramBot.shouldProcessUpdate", () => {
     list: vi.fn(),
   };
 
+  const mockKVStore = {
+    get: vi.fn(),
+    set: vi.fn(),
+  };
+
   const createMockEnv = (overrides: Partial<Env> = {}): Env => ({
     TELEGRAM_BOT_TOKEN: "test-token",
     TELEGRAM_CHANNEL_ID: "123456789",
     R2_BUCKET: mockR2Bucket as any,
+    KV_STORE: mockKVStore as any,
     ...overrides,
   });
 
