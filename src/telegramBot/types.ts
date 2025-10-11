@@ -24,6 +24,7 @@ export interface TelegramMessage {
   photo?: TelegramPhotoSize[];
   video?: TelegramVideo;
   document?: TelegramDocument;
+  media_group_id?: string; // to identify the media group of the message (same "album" when multiple photos are sent at once)
   caption?: string;
 }
 

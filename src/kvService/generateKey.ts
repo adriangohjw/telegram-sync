@@ -1,12 +1,12 @@
 import { z } from "zod";
 
 const generateKeyParamsSchema = z.object({
-  messageId: z.number(),
+  mediaGroupId: z.string().min(1, "Media group ID cannot be empty"),
 });
 
 export type GenerateKeyParams = z.infer<typeof generateKeyParamsSchema>;
 
 export const generateKey = (params: GenerateKeyParams): string => {
-  const { messageId } = generateKeyParamsSchema.parse(params);
-  return `message_processed_${messageId}`;
+  const { mediaGroupId } = generateKeyParamsSchema.parse(params);
+  return `media_group_processed_${mediaGroupId}`;
 };

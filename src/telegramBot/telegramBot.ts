@@ -144,11 +144,17 @@ export class TelegramBot {
       return;
     }
 
-    const kvKey = this.kvService.generateKey({ messageId: message.message_id });
-    const messageProcessed = await this.kvService.get<0 | 1>(kvKey);
-    if (messageProcessed === 0 || messageProcessed === null) {
+    if (message.media_group_id !== undefined) {
+      const kvKey = this.kvService.generateKey({
+        mediaGroupId: message.media_group_id,
+      });
+      const messageProcessed = await this.kvService.get<0 | 1>(kvKey);
+      if (messageProcessed === 0 || messageProcessed === null) {
+        await this.reactToMessage(message.chat.id, message.message_id, "👀");
+        await this.kvService.set<0 | 1>(kvKey, 1);
+      }
+    } else {
       await this.reactToMessage(message.chat.id, message.message_id, "👀");
-      await this.kvService.set<0 | 1>(kvKey, 1);
     }
 
     // Process each media file

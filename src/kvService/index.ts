@@ -46,8 +46,8 @@ export class KVService {
   }
 
   generateKey({
-    messageId,
+    mediaGroupId,
   }: GenerateKeyParams): ReturnType<typeof generateKey> {
-    return generateKey({ messageId });
+    return generateKey({ mediaGroupId });
   }
 }
