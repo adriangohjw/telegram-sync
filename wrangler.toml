@@ -13,6 +13,9 @@ enabled = true
 binding = "R2_BUCKET"
 bucket_name = "telegram-sync"
 
+[placement]
+mode = "smart"
+
 # Note: Environment variables are managed via:
 # - wrangler secret put R2_BUCKET_NAME (for production)
 # - .dev.vars file (for local development)
