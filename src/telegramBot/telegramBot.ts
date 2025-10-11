@@ -134,7 +134,6 @@ export class TelegramBot {
       return;
     }
 
-    // React with 👀 emoji to indicate processing has started
     await this.reactToMessage(message.chat.id, message.message_id, "👀");
 
     // Process each media file
@@ -161,8 +160,7 @@ export class TelegramBot {
       }
     }
 
-    // Remove 👀 emoji and react with ☁️ emoji to indicate completion
-    await this.reactToMessage(message.chat.id, message.message_id, "☁️");
+    await this.reactToMessage(message.chat.id, message.message_id, "👍");
   }
 
   async downloadMediaFile(mediaFile: MediaFile): Promise<ArrayBuffer> {
