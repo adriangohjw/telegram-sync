@@ -134,10 +134,18 @@ export class TelegramBot {
       return;
     }
 
+    // Extract media files to check if message contains media content
+    const mediaFiles = extractMediaFiles(message);
+
+    if (mediaFiles.length === 0) {
+      return;
+    }
+
+    // Only react with eyes emoji if the message contains media content
     await this.reactToMessage(message.chat.id, message.message_id, "👀");
 
     // Process each media file
-    for (const mediaFile of extractMediaFiles(message)) {
+    for (const mediaFile of mediaFiles) {
       try {
         console.log(`Processing ${mediaFile.type}: ${mediaFile.fileName}`);
 
