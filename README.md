@@ -11,7 +11,7 @@ A Telegram bot that syncs channel media to Cloudflare R2 storage.
 ### Prerequisites
 
 - Node.js >= 22.0.0
-- pnpm >= 10.16.0
+- bun >= 1.3.5
 - Cloudflare account with R2 enabled
 - Telegram Bot Token
 
@@ -27,13 +27,13 @@ A Telegram bot that syncs channel media to Cloudflare R2 storage.
 2. Install dependencies:
 
    ```bash
-   pnpm install
+   bun install
    ```
 
 3. Set up environment variables:
 
    ```bash
-   pnpm run setup:dev
+   bun run setup:dev
    ```
 
    Then edit `.dev.vars` with your configuration:
@@ -47,5 +47,5 @@ A Telegram bot that syncs channel media to Cloudflare R2 storage.
 
 4. Deploy to Cloudflare Workers:
    ```bash
-   pnpm run deploy
+   bun run deploy
    ```

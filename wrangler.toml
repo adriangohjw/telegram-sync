@@ -3,7 +3,7 @@ main = "src/index.ts"
 compatibility_date = "2025-10-05"
 
 [build]
-command = "pnpm build"
+command = "bun run build"
 
 [observability.logs]
 enabled = true

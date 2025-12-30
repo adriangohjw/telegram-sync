@@ -1,6 +1,5 @@
 # Dependencies
 node_modules/
-pnpm-debug.log*
 
 # Build outputs
 dist/
@@ -25,6 +24,3 @@ wrangler.toml.bak
 
 # TypeScript
 *.tsbuildinfo
-
-# Lock files (keep pnpm-lock.yaml but ignore others)
-package-lock.json

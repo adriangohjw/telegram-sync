@@ -4,14 +4,16 @@ description: "Setup and install dependencies"
 runs:
   using: "composite"
   steps:
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v4
+    - name: Setup bun
+      uses: oven-sh/setup-bun@v2
+      with:
+        bun-version: "1.3.5"
 
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version-file: ".nvmrc"
-        cache: "pnpm"
+        cache: "bun"
 
     - shell: bash
-      run: pnpm install --frozen-lockfile
+      run: bun install --frozen-lockfile

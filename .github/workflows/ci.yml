@@ -18,7 +18,7 @@ jobs:
         uses: ./tooling/github/setup
 
       - name: Run linting
-        run: pnpm lint
+        run: bun run lint
 
   typecheck:
     name: "🔎 Typecheck"
@@ -31,7 +31,7 @@ jobs:
         uses: ./tooling/github/setup
 
       - name: Run type checking
-        run: pnpm typecheck
+        run: bun run typecheck
 
   test:
     name: "🧪 Test"
@@ -44,4 +44,4 @@ jobs:
         uses: ./tooling/github/setup
 
       - name: Run tests
-        run: pnpm test
+        run: bun run test
