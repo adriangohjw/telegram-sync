@@ -21,7 +21,7 @@
     "secrets:list": "wrangler secret list"
   },
   "dependencies": {
-    "hono": "^4.0.0",
+    "hono": "^4.11.3",
     "superjson": "^2.2.6",
     "zod": "^4.2.1"
   },
