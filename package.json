@@ -21,18 +21,18 @@
     "secrets:list": "wrangler secret list"
   },
   "dependencies": {
-    "hono": "^3.12.12",
+    "hono": "^4.0.0",
     "superjson": "^2.2.6",
     "zod": "^4.2.1"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20251230.0",
-    "@types/node": "^20.19.27",
+    "@types/node": "^25.0.3",
     "dotenv": "^16.6.1",
     "oxlint": "^1.36.0",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
-    "vitest": "^3.2.4",
+    "vitest": "^4.0.16",
     "wrangler": "^4.54.0"
   },
   "engines": {
