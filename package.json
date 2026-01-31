@@ -29,7 +29,7 @@
     "@cloudflare/workers-types": "^4.20260117.0",
     "@types/node": "^25.0.9",
     "dotenv": "^16.6.1",
-    "oxlint": "^1.39.0",
+    "oxlint": "^1.41.0",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "vitest": "^4.0.17",
