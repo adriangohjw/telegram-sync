@@ -79,9 +79,7 @@ export class TelegramBot {
     offset: number;
     limit: number;
   }): Promise<TelegramUpdate[]> {
-    const response = await fetch(
-      `${this.baseUrl}/getUpdates?offset=${offset}&limit=${limit}`
-    );
+    const response = await fetch(`${this.baseUrl}/getUpdates?offset=${offset}&limit=${limit}`);
 
     const data = (await response.json()) as {
       ok: boolean;
@@ -116,10 +114,7 @@ export class TelegramBot {
     }
 
     // Filter by message thread ID if specified
-    if (
-      this.messageThreadId &&
-      message?.message_thread_id?.toString() !== this.messageThreadId
-    ) {
+    if (this.messageThreadId && message?.message_thread_id?.toString() !== this.messageThreadId) {
       return false;
     }
 
@@ -215,9 +210,7 @@ export class TelegramBot {
   }
 
   private async downloadFile(filePath: string): Promise<ArrayBuffer> {
-    const response = await fetch(
-      `https://api.telegram.org/file/bot${this.botToken}/${filePath}`
-    );
+    const response = await fetch(`https://api.telegram.org/file/bot${this.botToken}/${filePath}`);
 
     if (!response.ok) {
       throw new Error(`Failed to download file: ${response.statusText}`);
@@ -226,11 +219,7 @@ export class TelegramBot {
     return response.arrayBuffer();
   }
 
-  private async reactToMessage(
-    chatId: number,
-    messageId: number,
-    emoji: string
-  ): Promise<void> {
+  private async reactToMessage(chatId: number, messageId: number, emoji: string): Promise<void> {
     const response = await fetch(`${this.baseUrl}/setMessageReaction`, {
       method: "POST",
       headers: {

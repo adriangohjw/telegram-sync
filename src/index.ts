@@ -14,7 +14,7 @@ app.use(
     origin: "*",
     allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowHeaders: ["Content-Type", "Authorization"],
-  })
+  }),
 );
 
 // Health check endpoint
@@ -62,9 +62,7 @@ app.post("/setup/webhook/:secret", async (c) => {
     const telegramBot = new TelegramBot(c.env);
 
     const url = new URL(c.req.url);
-    const webhookUrl = `${url.protocol}//${
-      url.host
-    }/webhook/telegram/${c.req.param("secret")}`;
+    const webhookUrl = `${url.protocol}//${url.host}/webhook/telegram/${c.req.param("secret")}`;
 
     const success = await telegramBot.setWebhook(webhookUrl);
 
@@ -80,7 +78,7 @@ app.post("/setup/webhook/:secret", async (c) => {
         error: "Failed to set webhook",
         details: error instanceof Error ? error.message : "Unknown error",
       },
-      500
+      500,
     );
   }
 });
@@ -97,9 +95,7 @@ app.delete("/setup/webhook/:secret", async (c) => {
 
     return c.json({
       success,
-      message: success
-        ? "Webhook deleted successfully"
-        : "Failed to delete webhook",
+      message: success ? "Webhook deleted successfully" : "Failed to delete webhook",
     });
   } catch (error) {
     console.error("Error deleting webhook:", error);
@@ -108,7 +104,7 @@ app.delete("/setup/webhook/:secret", async (c) => {
         error: "Failed to delete webhook",
         details: error instanceof Error ? error.message : "Unknown error",
       },
-      500
+      500,
     );
   }
 });
@@ -121,7 +117,7 @@ app.notFound((c) => {
       message: "The requested resource was not found",
       timestamp: new Date().toISOString(),
     },
-    404
+    404,
   );
 });
 
@@ -134,7 +130,7 @@ app.onError((err, c) => {
       message: err.message,
       timestamp: new Date().toISOString(),
     },
-    500
+    500,
   );
 });
 

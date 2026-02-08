@@ -2,18 +2,23 @@
   "name": "telegram-sync",
   "version": "1.0.0",
   "description": "Telegram bot that syncs channel media to Cloudflare R2",
-  "main": "src/index.ts",
+  "author": "adriangohjw",
+  "workspaces": [
+    "."
+  ],
   "type": "module",
-  "packageManager": "bun@1.3.5",
+  "main": "src/index.ts",
   "scripts": {
     "dev": "wrangler dev",
     "dev:poll": "tsx scripts/dev-poll.ts",
     "deploy": "wrangler deploy",
     "start": "wrangler dev",
-    "build": "tsc",
-    "typecheck": "tsc --noEmit",
+    "build": "tsgo",
+    "typecheck": "tsgo --noEmit",
     "lint": "npx oxlint --config oxlintrc.json",
     "lint:fix": "npx oxlint --fix --config oxlintrc.json",
+    "format": "oxfmt --check",
+    "format:fix": "oxfmt",
     "setup:dev": "cp .dev.vars.example .dev.vars",
     "secrets:list": "wrangler secret list"
   },
@@ -26,18 +31,16 @@
     "@cloudflare/workers-types": "^4.20260131.0",
     "@types/bun": "^1.3.5",
     "@types/node": "^25.2.0",
+    "@typescript/native-preview": "^7.0.0-dev.20260208.1",
     "dotenv": "^16.6.1",
+    "oxfmt": "^0.28.0",
     "oxlint": "^1.42.0",
     "tsx": "^4.21.0",
-    "typescript": "^5.9.3",
     "wrangler": "^4.61.1"
   },
   "engines": {
-    "node": ">=22.0.0",
-    "bun": ">=1.3.5"
+    "bun": ">=1.3.5",
+    "node": ">=22.0.0"
   },
-  "author": "adriangohjw",
-  "workspaces": [
-    "."
-  ]
+  "packageManager": "bun@1.3.5"
 }

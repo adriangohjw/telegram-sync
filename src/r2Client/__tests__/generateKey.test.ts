@@ -36,9 +36,7 @@ describe("generateKey", () => {
       const fileName = "test-file";
 
       // Act & Assert
-      expect(() => generateKey({ fileName })).toThrow(
-        "File must have an extension",
-      );
+      expect(() => generateKey({ fileName })).toThrow("File must have an extension");
     });
 
     it("should throw error for files with no extension but ending with dot", () => {
@@ -56,9 +54,7 @@ describe("generateKey", () => {
       const fileName = "";
 
       // Act & Assert
-      expect(() => generateKey({ fileName })).toThrow(
-        "Filename cannot be empty",
-      );
+      expect(() => generateKey({ fileName })).toThrow("Filename cannot be empty");
     });
   });
 });

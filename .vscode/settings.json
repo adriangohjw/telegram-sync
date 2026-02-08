@@ -1,17 +1,9 @@
 {
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "oxc.fmt.configPath": ".oxfmtrc.json",
+  "editor.defaultFormatter": "oxc.oxc-vscode",
   "editor.formatOnSave": true,
-  "eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
-  "eslint.useFlatConfig": true,
-  "eslint.workingDirectories": [
-    { "pattern": "apps/*/", "changeProcessCWD": true },
-    { "pattern": "packages/*/", "changeProcessCWD": true },
-    { "pattern": "tooling/*/", "changeProcessCWD": true }
-  ],
-  "typescript.enablePromptUseWorkspaceTsdk": true,
-  "typescript.preferences.autoImportFileExcludePatterns": [
-    "next/router.d.ts",
-    "next/dist/client/router.d.ts"
-  ],
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "editor.codeActionsOnSave": {
+    "source.fixAll.oxc": "always"
+  },
+  "typescript.experimental.useTsgo": true
 }

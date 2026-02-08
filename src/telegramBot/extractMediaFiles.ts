@@ -40,8 +40,7 @@ export const extractMediaFiles = (message: TelegramMessage): MediaFile[] => {
     if ((isVideo || isImage) && message.document.mime_type) {
       mediaFiles.push({
         fileId: message.document.file_id,
-        fileName:
-          message.document.file_name || `document_${message.message_id}`,
+        fileName: message.document.file_name || `document_${message.message_id}`,
         mimeType: message.document.mime_type,
         ...(message.document.file_size && {
           fileSize: message.document.file_size,

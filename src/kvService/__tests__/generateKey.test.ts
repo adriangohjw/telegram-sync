@@ -29,9 +29,7 @@ describe("generateKey", () => {
     const result = generateKey({ mediaGroupId });
 
     // Assert
-    expect(result).toEqual(
-      "media_group_processed_very-long-media-group-id-123456789",
-    );
+    expect(result).toEqual("media_group_processed_very-long-media-group-id-123456789");
   });
 
   it("should handle special characters in media group ID", () => {

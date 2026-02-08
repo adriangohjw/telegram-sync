@@ -86,10 +86,7 @@ class DevPoller {
           await this.telegramBot.processUpdate(update);
           console.log(`✅ Successfully processed update ${update.update_id}`);
         } catch (error) {
-          console.error(
-            `❌ Failed to process update ${update.update_id}:`,
-            error
-          );
+          console.error(`❌ Failed to process update ${update.update_id}:`, error);
         }
       }
 

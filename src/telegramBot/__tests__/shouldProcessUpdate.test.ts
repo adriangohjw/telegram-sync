@@ -53,9 +53,7 @@ describe("TelegramBot.shouldProcessUpdate", () => {
 
     it("should return false for any channel when no channel ID is configured", () => {
       // Arrange
-      const telegramBot = new TelegramBot(
-        createMockEnv({ TELEGRAM_CHANNEL_ID: "" }),
-      );
+      const telegramBot = new TelegramBot(createMockEnv({ TELEGRAM_CHANNEL_ID: "" }));
       const update = createMockUpdate({ chatId: "any-channel-id" });
 
       // Act
@@ -67,9 +65,7 @@ describe("TelegramBot.shouldProcessUpdate", () => {
 
     it("should return false for any channel when channel ID is undefined", () => {
       // Arrange
-      const telegramBot = new TelegramBot(
-        createMockEnv({ TELEGRAM_CHANNEL_ID: undefined as any }),
-      );
+      const telegramBot = new TelegramBot(createMockEnv({ TELEGRAM_CHANNEL_ID: undefined as any }));
       const update = createMockUpdate({ chatId: "any-channel-id" });
 
       // Act
@@ -240,8 +236,6 @@ const createMockUpdate = ({
 
   return {
     update_id: Math.floor(Math.random() * 1000000),
-    ...(isChannelPost
-      ? { channel_post: mockMessage }
-      : { message: mockMessage }),
+    ...(isChannelPost ? { channel_post: mockMessage } : { message: mockMessage }),
   };
 };

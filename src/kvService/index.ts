@@ -36,14 +36,9 @@ export class KVService {
     }
   }
 
-  async set<T = string>(
-    key: string,
-    value: T,
-    options?: KVSetOptions
-  ): Promise<boolean> {
+  async set<T = string>(key: string, value: T, options?: KVSetOptions): Promise<boolean> {
     try {
-      const serializedValue =
-        typeof value === "string" ? value : superjson.stringify(value);
+      const serializedValue = typeof value === "string" ? value : superjson.stringify(value);
 
       const ttl = options?.ttl ?? 86400; // 24 hours if not specified
 
@@ -55,9 +50,7 @@ export class KVService {
     }
   }
 
-  generateKey({
-    mediaGroupId,
-  }: GenerateKeyParams): ReturnType<typeof generateKey> {
+  generateKey({ mediaGroupId }: GenerateKeyParams): ReturnType<typeof generateKey> {
     return generateKey({ mediaGroupId });
   }
 }

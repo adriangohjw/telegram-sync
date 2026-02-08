@@ -6,9 +6,8 @@ const generateKeyParamsSchema = z.object({
     .min(1, "Filename cannot be empty")
     .refine((fileName) => fileName.includes("."), "File must have an extension")
     .refine(
-      (fileName) =>
-        !(fileName.endsWith(".") && fileName.split(".").length === 2),
-      "File cannot end with dot but have no extension"
+      (fileName) => !(fileName.endsWith(".") && fileName.split(".").length === 2),
+      "File cannot end with dot but have no extension",
     ),
 });
 
