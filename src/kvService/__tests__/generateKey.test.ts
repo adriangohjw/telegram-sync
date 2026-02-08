@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect } from "bun:test";
 import { generateKey } from "../generateKey";
 
 describe("generateKey", () => {
@@ -30,7 +30,7 @@ describe("generateKey", () => {
 
     // Assert
     expect(result).toEqual(
-      "media_group_processed_very-long-media-group-id-123456789"
+      "media_group_processed_very-long-media-group-id-123456789",
     );
   });
 

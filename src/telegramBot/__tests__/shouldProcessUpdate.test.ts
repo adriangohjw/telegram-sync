@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi } from "bun:test";
 import { TelegramBot } from "../telegramBot";
 import type { TelegramUpdate, TelegramMessage, TelegramChat } from "../types";
 import type { Env } from "../../env";
@@ -54,7 +54,7 @@ describe("TelegramBot.shouldProcessUpdate", () => {
     it("should return false for any channel when no channel ID is configured", () => {
       // Arrange
       const telegramBot = new TelegramBot(
-        createMockEnv({ TELEGRAM_CHANNEL_ID: "" })
+        createMockEnv({ TELEGRAM_CHANNEL_ID: "" }),
       );
       const update = createMockUpdate({ chatId: "any-channel-id" });
 
@@ -68,7 +68,7 @@ describe("TelegramBot.shouldProcessUpdate", () => {
     it("should return false for any channel when channel ID is undefined", () => {
       // Arrange
       const telegramBot = new TelegramBot(
-        createMockEnv({ TELEGRAM_CHANNEL_ID: undefined as any })
+        createMockEnv({ TELEGRAM_CHANNEL_ID: undefined as any }),
       );
       const update = createMockUpdate({ chatId: "any-channel-id" });
 
@@ -86,7 +86,7 @@ describe("TelegramBot.shouldProcessUpdate", () => {
       const telegramBot = new TelegramBot(
         createMockEnv({
           TELEGRAM_MESSAGE_THREAD_ID: "987654321",
-        })
+        }),
       );
       const update = createMockUpdate({
         chatId: "123456789",
@@ -105,7 +105,7 @@ describe("TelegramBot.shouldProcessUpdate", () => {
       const telegramBot = new TelegramBot(
         createMockEnv({
           TELEGRAM_MESSAGE_THREAD_ID: "987654321",
-        })
+        }),
       );
       const update = createMockUpdate({
         chatId: "123456789",
@@ -124,7 +124,7 @@ describe("TelegramBot.shouldProcessUpdate", () => {
       const telegramBot = new TelegramBot(
         createMockEnv({
           TELEGRAM_MESSAGE_THREAD_ID: "987654321",
-        })
+        }),
       );
       const update = createMockUpdate({ chatId: "123456789" });
 
@@ -157,7 +157,7 @@ describe("TelegramBot.shouldProcessUpdate", () => {
       const telegramBot = new TelegramBot(
         createMockEnv({
           TELEGRAM_MESSAGE_THREAD_ID: "987654321",
-        })
+        }),
       );
       const update = createMockUpdate({
         chatId: "999999999",
@@ -176,7 +176,7 @@ describe("TelegramBot.shouldProcessUpdate", () => {
       const telegramBot = new TelegramBot(
         createMockEnv({
           TELEGRAM_MESSAGE_THREAD_ID: "987654321",
-        })
+        }),
       );
       const update = createMockUpdate({
         chatId: "123456789",
@@ -195,7 +195,7 @@ describe("TelegramBot.shouldProcessUpdate", () => {
       const telegramBot = new TelegramBot(
         createMockEnv({
           TELEGRAM_MESSAGE_THREAD_ID: "987654321",
-        })
+        }),
       );
       const update = createMockUpdate({
         chatId: "123456789",

@@ -1,11 +1,11 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, setSystemTime } from "bun:test";
 import { generateKey } from "../generateKey";
 
 describe("generateKey", () => {
   beforeEach(() => {
     // Mock Date.now() to return a fixed timestamp for consistent testing
     vi.useFakeTimers();
-    vi.setSystemTime(new Date("2024-01-15T10:30:00Z"));
+    setSystemTime(new Date("2024-01-15T10:30:00Z"));
   });
 
   it("should generate a key with date folder, base name, timestamp, and extension", () => {
@@ -37,7 +37,7 @@ describe("generateKey", () => {
 
       // Act & Assert
       expect(() => generateKey({ fileName })).toThrow(
-        "File must have an extension"
+        "File must have an extension",
       );
     });
 
@@ -47,7 +47,7 @@ describe("generateKey", () => {
 
       // Act & Assert
       expect(() => generateKey({ fileName })).toThrow(
-        "File cannot end with dot but have no extension"
+        "File cannot end with dot but have no extension",
       );
     });
 
@@ -57,7 +57,7 @@ describe("generateKey", () => {
 
       // Act & Assert
       expect(() => generateKey({ fileName })).toThrow(
-        "Filename cannot be empty"
+        "Filename cannot be empty",
       );
     });
   });
